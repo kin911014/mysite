@@ -10,6 +10,7 @@ public class BoardActionFactory extends ActionFactory {
 		switch(actionName) {
 		case "listform" : return new ListFormAction(); 
 		case "writeform" : return new WriteFormAction();
+		case "modifyform" : return new ModifyFormAction();
 		}
 		
 		return null;
