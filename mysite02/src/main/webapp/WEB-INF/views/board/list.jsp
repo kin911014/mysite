@@ -2,6 +2,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,14 +28,16 @@
 						<th>작성일</th>
 						<th>&nbsp;</th>
 					</tr>				
+					<c:forEach var="list" items="${lists }" varStatus="status">
 					<tr>
-						<td>3</td>
-						<td><a href="${pageContext.request.contextPath}/board?a=modifyform">세 번째 글입니다.</a></td>
-						<td>안대혁</td>
-						<td>3</td>
-						<td>2015-10-11 12:04:20</td>
+						<td>${list.no }</td>
+						<td><a href="${pageContext.request.contextPath}/board?a=viewform&?no=${list.no}">세 번째 글입니다.</a></td>
+						<td>${list.title }</td>
+						<td>${list.hit }</td>
+						<td>${list.regDate }</td>
 						<td><a href="" class="del">삭제</a></td>
 					</tr>
+					</c:forEach>
 					<tr>
 						<td>2</td>
 						<td style="text-align:left; padding-reft:${0*0}px"><img src='/mysite02/assets/images/reply.png'><a href="">두 번째 글입니다.</a></td>

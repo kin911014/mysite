@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.douzone.mysite.action.board;
 
 import java.io.IOException;
@@ -15,14 +12,14 @@ import com.douzone.mysitetest.vo.BoardVo;
 import com.douzone.mysitetest.web.action.Action;
 import com.douzone.mysitetest.web.util.WebUtil;
 
-public class ListFormAction implements Action {
+public class ViewFormAction implements Action {
 
 	@Override
 	public void excute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-		
-		List<BoardVo>list = new BoardRepository().findAll();
-		request.setAttribute("lists", list);
-		WebUtil.forward("/WEB-INF/views/board/list.jsp", request, response);
+		String noSt = request.getParameter("no");
+		Long no = Long.parseLong(noSt);
+		request.setAttribute("no", no);
+		WebUtil.forward("/WEB-INF/views/board/view.jsp", request, response);
 
 	}
 

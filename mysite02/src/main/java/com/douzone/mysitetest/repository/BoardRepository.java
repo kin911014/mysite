@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.douzone.mysitetest.vo.BoardVo;
-import com.douzone.mysitetest.vo.UserVo;
 
 public class BoardRepository {
 
@@ -28,14 +27,13 @@ public class BoardRepository {
 				" a.contents,\r\n" + 
 				" a.hit,\r\n" + 
 				" a.reg_date,\r\n" + 
-				" max(a.g_no)+1,\r\n" + 
+				" a.g_no,\r\n" + 
 				" a.o_no,\r\n" + 
 				" a.depth,\r\n" + 
 				" a.user_no,\r\n" + 
 				" b.name\r\n" + 
 				"from board a, user b\r\n" + 
-				"where a.user_no = b.no\r\n" + 
-				"order by a.g_no desc, a.o_no asc"; 
+				"where a.user_no = b.no\r\n"; 
 		pstmt = conn.prepareStatement(sql);
 		
 		rs = pstmt.executeQuery();
@@ -101,7 +99,7 @@ public class BoardRepository {
 
 		try {
 			conn = getConnection();
-										//'취미', '코딩입니다', 0, now(), 1, 3, 2, 2
+										
 			String sql = "insert into board values(null, ?, ?, ?, now(), ?, ?, ?, ?)";
 			pstmt = conn.prepareStatement(sql);
 

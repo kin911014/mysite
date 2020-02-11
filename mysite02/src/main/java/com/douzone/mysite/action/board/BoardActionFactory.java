@@ -11,6 +11,7 @@ public class BoardActionFactory extends ActionFactory {
 		case "listform" : return new ListFormAction(); 
 		case "writeform" : return new WriteFormAction();
 		case "modifyform" : return new ModifyFormAction();
+		case "viewform" : return new ViewFormAction();
 		}
 		
 		return null;
