@@ -9,6 +9,7 @@ public class BoardActionFactory extends ActionFactory {
 	public Action getAction(String actionName) {
 		switch(actionName) {
 		case "listform" : return new ListFormAction(); 
+		case "writeform" : return new WriteFormAction();
 		}
 		
 		return null;
