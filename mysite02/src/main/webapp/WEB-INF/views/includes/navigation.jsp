@@ -8,6 +8,6 @@
 			<ul>
 				<li><a href="${pageContext.request.contextPath }">김동은</a></li>
 				<li><a href="${pageContext.request.contextPath }/guestbook?a=insertform">방명록</a></li>
-				<li><a href="${pageContext.request.contextPath }/board">게시판</a></li>
+				<li><a href="${pageContext.request.contextPath }/board?a=listform">게시판</a></li>
 			</ul>
 		</div>
