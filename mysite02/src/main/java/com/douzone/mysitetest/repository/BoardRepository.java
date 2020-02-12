@@ -100,15 +100,23 @@ public class BoardRepository {
 		try {
 			conn = getConnection();
 										
-			String sql = "insert into board values(null, ?, ?, ?, now(), ?, ?, ?, ?)";
+			String sql = " insert into board values(null, '농구', '농구합니다.', 1, now(), 2, 1, 1, 2);\r\n" + 
+					"insert \r\n" + 
+					"into board values(\r\n" + 
+					"null, \r\n" + 
+					" ?, \r\n" + 
+					" ?, \r\n" + 
+					" 0, \r\n" + 
+					" now(),\r\n" + 
+					" (select ifnull(max(b.g_no),0)+1 from board b),\r\n" + 
+					" 1,\r\n" + 
+					" 0,\r\n" + 
+					" ?)";
 			pstmt = conn.prepareStatement(sql);
 
 			pstmt.setString(1, vo.getTitle());
 			pstmt.setString(2, vo.getContents());
-			pstmt.setInt(3, vo.getHit());
-			pstmt.setInt(4, vo.getgNo());
-			pstmt.setInt(5, vo.getoNo());
-			pstmt.setLong(6, vo.getUserNo());
+			pstmt.setLong(3, vo.getUserNo());
 
 			count = pstmt.executeUpdate();
 

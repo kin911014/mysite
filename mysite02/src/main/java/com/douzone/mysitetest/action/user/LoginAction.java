@@ -33,6 +33,7 @@ public class LoginAction implements Action {
 		/* 로그인 처리*/
 		HttpSession session = request.getSession(true);
 		session.setAttribute("authUser", authUser);
+		// request.getContextPath()는 /mysite02이며, redirect에서 내 소스의 정보가 유출되면 안되기때문에 아래와 같이 쓸 것
 		WebUtil.redirect(request.getContextPath(), request, response);
 		
 
