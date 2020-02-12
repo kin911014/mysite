@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.douzone.mysitetest.vo.BoardVo;
+import com.douzone.mysitetest.vo.UserVo;
 
 public class BoardRepository {
 
@@ -137,6 +138,55 @@ public class BoardRepository {
 		}
 
 		return count;
+	}
+	
+	public BoardVo findByNo(BoardVo vo) {
+		BoardVo boardVo = null;
+
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+			conn = getConnection();
+
+			String sql = "select a.no, b.name \r\n" + 
+					"	from board a, user b \r\n" + 
+					"	where a.no = ? \r\n" + 
+					"	and a.no = b.no";
+			pstmt = conn.prepareStatement(sql);
+
+			pstmt.setLong(1, vo.getNo());
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				Long no = rs.getLong(1);
+				String name = rs.getString(2);
+
+				boardVo = new BoardVo();
+				boardVo.setNo(no);
+				boardVo.setName(name);
+			}
+		} catch (SQLException e) {
+			System.out.println("error :" + e);
+		} finally {
+			// 자원 정리
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (pstmt != null) {
+					pstmt.close();
+				}
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+
+		return boardVo;
 	}
 	
 	

@@ -1,7 +1,6 @@
 package com.douzone.mysite.action.board;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -16,9 +15,16 @@ public class ViewFormAction implements Action {
 
 	@Override
 	public void excute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-		//String noSt = request.getParameter("no");
-		//Long no = Long.parseLong(noSt);
-		//request.setAttribute("no", no);
+		String noSt = request.getParameter("no");
+		Long no = Long.parseLong(noSt);
+		
+		
+		BoardVo vo = new BoardVo();
+		vo.setNo(no);
+		// if문 대입하기
+		BoardVo views = new BoardRepository().findByNo(vo);
+		request.setAttribute("views", views);
+		
 		WebUtil.forward("/WEB-INF/views/board/view.jsp", request, response);
 
 	}
