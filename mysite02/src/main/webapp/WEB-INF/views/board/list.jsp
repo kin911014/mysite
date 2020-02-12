@@ -31,8 +31,8 @@
 					<c:forEach var="list" items="${lists }" varStatus="status">
 					<tr>
 						<td>${list.no }</td>
-						<td><a href="${pageContext.request.contextPath}/board?a=viewform&no=${list.no}">세 번째 글입니다.</a></td>
-						<td>${list.title }</td>
+						<td><a href="${pageContext.request.contextPath}/board?a=viewform&no=${list.no}">${list.title }</a></td>
+						<td>${list.name }</td>
 						<td>${list.hit }</td>
 						<td>${list.regDate }</td>
 						<td><a href="" class="del">삭제</a></td>
