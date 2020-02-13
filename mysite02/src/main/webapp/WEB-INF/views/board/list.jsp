@@ -28,13 +28,13 @@
 						<th>작성일</th>
 						<th>&nbsp;</th>
 					</tr>				
-					<c:forEach var="list" items="${lists }" varStatus="status">
+					<c:forEach var="write" items="${write }" varStatus="status">
 					<tr>
-						<td>${list.no }</td>
-						<td><a href="${pageContext.request.contextPath}/board?a=viewform&no=${list.no}">${list.title }</a></td>
-						<td>${list.name }</td>
-						<td>${list.hit }</td>
-						<td>${list.regDate }</td>
+						<td>${write.no }</td>
+						<td><a href="${pageContext.request.contextPath}/board?a=viewform&no=${write.no}">${write.title }</a></td>
+						<td>${write.name }</td>
+						<td>${write.hit }</td>
+						<td>${write.regDate }</td>
 						<td><a href="" class="del">삭제</a></td>
 					</tr>
 					</c:forEach>

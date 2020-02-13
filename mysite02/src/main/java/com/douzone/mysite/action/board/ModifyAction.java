@@ -15,11 +15,11 @@ public class ModifyAction implements Action {
 
 	@Override
 	public void excute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+		
+		
 		String title = request.getParameter("title");
 		String contents = request.getParameter("content");
 		String noSt = request.getParameter("viewno");
-//		request.setAttribute("no", no);
-		System.out.println(noSt + "에러");
 		Long no = Long.parseLong(noSt);
 
 		BoardVo vo = new BoardVo();
@@ -28,7 +28,7 @@ public class ModifyAction implements Action {
 		vo.setNo(no);
 
 		new BoardRepository().update(vo);
-		WebUtil.redirect(request.getContextPath() + "board?a=viewform", request, response);
+		WebUtil.redirect(request.getContextPath() + "/board?a=viewform&no="+ noSt, request, response);
 
 	}
 

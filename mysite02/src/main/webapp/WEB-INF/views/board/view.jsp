@@ -24,13 +24,13 @@
 					</tr>
 					<tr>
 						<td class="label">제목</td>
-						<td>${views.title }</td>
+						<td>${lists.title }</td>
 					</tr>
 					<tr>
 						<td class="label">내용</td>
 						<td>
 							<div class="view-content">
-								${views.contents }
+								${lists.contents }
 							</div>
 						</td>
 					</tr>
@@ -38,7 +38,7 @@
 			
 				<div class="bottom">
 					<a href="${pageContext.request.contextPath}/board?a=listform">글목록</a>
-					<a href="${pageContext.request.contextPath}/board?a=modifyform&no=${views.no}">글수정</a>
+					<a href="${pageContext.request.contextPath}/board?a=modifyform&no=${lists.no}">글수정</a>
 				</div>
 			</div>
 		</div>

@@ -20,8 +20,8 @@ public class ViewFormAction implements Action {
 		BoardVo vo = new BoardVo();
 		vo.setNo(no);
 		// if문 대입하기
-		BoardVo views = new BoardRepository().findByNo(vo);
-		request.setAttribute("views", views);
+		BoardVo lists = new BoardRepository().findByNo(vo);
+		request.setAttribute("lists", lists);
 		
 		WebUtil.forward("/WEB-INF/views/board/view.jsp", request, response);
 

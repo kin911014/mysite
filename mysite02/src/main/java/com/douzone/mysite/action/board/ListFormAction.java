@@ -20,8 +20,8 @@ public class ListFormAction implements Action {
 	@Override
 	public void excute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		
-		List<BoardVo>list = new BoardRepository().findAll();
-		request.setAttribute("lists", list);
+		List<BoardVo> write = new BoardRepository().findAll();
+		request.setAttribute("write", write);
 		WebUtil.forward("/WEB-INF/views/board/list.jsp", request, response);
 
 	}
