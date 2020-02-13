@@ -19,6 +19,7 @@ public class WriteAction implements Action {
 		String title = request.getParameter("title");
 		String content = request.getParameter("content");
 		
+		// 로그인을 해야 사용 가능!!!
 		UserVo authUser = (UserVo) request.getSession().getAttribute("authUser");
 		Long userNo = authUser.getNo();
 		

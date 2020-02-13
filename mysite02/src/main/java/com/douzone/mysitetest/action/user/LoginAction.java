@@ -23,6 +23,7 @@ public class LoginAction implements Action {
 		vo.setEmail(email);
 		vo.setPassword(password);
 		
+		// userVo의 no와 name 리턴
 		UserVo authUser = new UserRepository().findByEmailAndPassword(vo);
 		if(authUser == null) {
 			/*로그인 실패*/

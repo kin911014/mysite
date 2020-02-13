@@ -101,10 +101,9 @@ public class BoardRepository {
 		try {
 			conn = getConnection();
 										
-			String sql = " insert into board values(null, '농구', '농구합니다.', 1, now(), 2, 1, 1, 2);\r\n" + 
-					"insert \r\n" + 
-					"into board values(\r\n" + 
-					"null, \r\n" + 
+			String sql = "insert \r\n" + 
+					" into board values(\r\n" + 
+					" null, \r\n" + 
 					" ?, \r\n" + 
 					" ?, \r\n" + 
 					" 0, \r\n" + 
@@ -112,7 +111,7 @@ public class BoardRepository {
 					" (select ifnull(max(b.g_no),0)+1 from board b),\r\n" + 
 					" 1,\r\n" + 
 					" 0,\r\n" + 
-					" ?)";
+					" ?)" ;
 			pstmt = conn.prepareStatement(sql);
 
 			pstmt.setString(1, vo.getTitle());
@@ -150,22 +149,24 @@ public class BoardRepository {
 		try {
 			conn = getConnection();
 
-			String sql = "select a.no, b.name \r\n" + 
-					"	from board a, user b \r\n" + 
-					"	where a.no = ? \r\n" + 
-					"	and a.no = b.no";
+			String sql = " select title, contents\r\n" + 
+					" from board\r\n" + 
+					" where no = ?";
 			pstmt = conn.prepareStatement(sql);
-
+			
+			// BoardVo vo에서 no받은 뒤 그 넘버의 title과 contents를 보내기
+			// 아래 1이 ?에 들어가면 해당 title과 contents를 받을 수 있다.
 			pstmt.setLong(1, vo.getNo());
 			rs = pstmt.executeQuery();
 
 			if (rs.next()) {
-				Long no = rs.getLong(1);
-				String name = rs.getString(2);
+				String title = rs.getString(1);
+				String contents = rs.getString(2);
 
 				boardVo = new BoardVo();
-				boardVo.setNo(no);
-				boardVo.setName(name);
+				boardVo.setTitle(title);
+				boardVo.setContents(contents);
+				
 			}
 		} catch (SQLException e) {
 			System.out.println("error :" + e);
