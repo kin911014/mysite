@@ -149,7 +149,7 @@ public class BoardRepository {
 		try {
 			conn = getConnection();
 
-			String sql = " select title, contents\r\n" + 
+			String sql = " select title, contents, no\r\n" + 
 					" from board\r\n" + 
 					" where no = ?";
 			pstmt = conn.prepareStatement(sql);
@@ -162,10 +162,12 @@ public class BoardRepository {
 			if (rs.next()) {
 				String title = rs.getString(1);
 				String contents = rs.getString(2);
+				Long no = rs.getLong(3);
 
 				boardVo = new BoardVo();
 				boardVo.setTitle(title);
 				boardVo.setContents(contents);
+				boardVo.setNo(no);
 				
 			}
 		} catch (SQLException e) {
