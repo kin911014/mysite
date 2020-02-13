@@ -11,19 +11,24 @@ import com.douzone.mysitetest.vo.BoardVo;
 import com.douzone.mysitetest.web.action.Action;
 import com.douzone.mysitetest.web.util.WebUtil;
 
-public class ViewFormAction implements Action {
+public class ModifyAction implements Action {
 
 	@Override
 	public void excute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-		String noSt = request.getParameter("no");
+		String title = request.getParameter("title");
+		String contents = request.getParameter("content");
+		String noSt = request.getParameter("viewno");
+//		request.setAttribute("no", no);
+		System.out.println(noSt + "에러");
 		Long no = Long.parseLong(noSt);
+
 		BoardVo vo = new BoardVo();
+		vo.setTitle(title);
+		vo.setContents(contents);
 		vo.setNo(no);
-		// if문 대입하기
-		BoardVo views = new BoardRepository().findByNo(vo);
-		request.setAttribute("views", views);
-		
-		WebUtil.forward("/WEB-INF/views/board/view.jsp", request, response);
+
+		new BoardRepository().update(vo);
+		WebUtil.redirect(request.getContextPath() + "board?a=viewform", request, response);
 
 	}
 
