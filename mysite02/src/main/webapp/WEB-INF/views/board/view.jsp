@@ -35,10 +35,16 @@
 						</td>
 					</tr>
 				</table>
-			
 				<div class="bottom">
-					<a href="${pageContext.request.contextPath}/board?a=listform">글목록</a>
-					<a href="${pageContext.request.contextPath}/board?a=modifyform&no=${lists.no}">글수정</a>
+				<c:choose>
+					<c:when test="${authUser.no == lists.userNo}">
+						<a href="${pageContext.request.contextPath}/board?a=listform">글목록</a>
+						<a href="${pageContext.request.contextPath}/board?a=modifyform&no=${lists.no}">글수정</a>
+					</c:when>
+					<c:otherwise>
+						<a href="${pageContext.request.contextPath}/board?a=listform">글목록</a>
+					</c:otherwise>
+				</c:choose>
 				</div>
 			</div>
 		</div>

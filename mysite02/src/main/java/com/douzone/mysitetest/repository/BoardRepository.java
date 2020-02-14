@@ -150,9 +150,10 @@ public class BoardRepository {
 		try {
 			conn = getConnection();
 
-			String sql = " select title, contents, no\r\n" + 
-					" from board\r\n" + 
-					" where no = ?";
+			String sql = " select a.title, a.contents, a.no, a.user_no\r\n" + 
+					"from board a, user b\r\n" + 
+					"where a.no = ?\r\n" + 
+					"and a.user_no = b.no";
 			pstmt = conn.prepareStatement(sql);
 			
 			// BoardVo vo에서 no받은 뒤 그 넘버의 title과 contents를 보내기
@@ -164,11 +165,13 @@ public class BoardRepository {
 				String title = rs.getString(1);
 				String contents = rs.getString(2);
 				Long no = rs.getLong(3);
+				Long userNo = rs.getLong(4);
 
 				boardVo = new BoardVo();
 				boardVo.setTitle(title);
 				boardVo.setContents(contents);
 				boardVo.setNo(no);
+				boardVo.setUserNo(userNo);
 				
 			}
 		} catch (SQLException e) {
