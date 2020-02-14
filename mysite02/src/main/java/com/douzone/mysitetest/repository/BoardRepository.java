@@ -33,8 +33,9 @@ public class BoardRepository {
 				" a.depth,\r\n" + 
 				" a.user_no,\r\n" + 
 				" b.name\r\n" + 
-				"from board a, user b\r\n" + 
-				"where a.user_no = b.no\r\n"; 
+				" from board a, user b\r\n" + 
+				" where a.user_no = b.no\r\n" +
+				" order by a.g_no desc, a.o_no asc"; 
 		pstmt = conn.prepareStatement(sql);
 		
 		rs = pstmt.executeQuery();
@@ -155,18 +156,19 @@ public class BoardRepository {
 			String sql = "insert \r\n" + 
 					" into board values(\r\n" + 
 					" null, \r\n" + 
-					" ?, \r\n" + 
-					" ?, \r\n" + 
-					" 0, \r\n" + 
+					" ?, \r\n" +  // title
+					" ?, \r\n" +  // contents
+					" 0, \r\n" +  // 조회수
 					" now(),\r\n" + 
-					" (select ifnull(max(b.g_no),0)+1 from board b),\r\n" + 
-					" 1,\r\n" + 
-					" 0,\r\n" + 
-					" ?)" ;
+					" ?,\r\n" +  // g_no에서 가져옴
+					" 1,\r\n" +  // o_no+1로 가져옴
+					" 0,\r\n" +  
+					" ?)" ;      // userno
 			pstmt = conn.prepareStatement(sql);
 
 			pstmt.setString(1, vo.getTitle());
 			pstmt.setString(2, vo.getContents());
+			pstmt.setInt(3, vo.getgNo()); 
 			pstmt.setLong(3, vo.getUserNo());
 
 			count = pstmt.executeUpdate();
