@@ -92,7 +92,57 @@ public class BoardRepository {
 		return result;
 	}	
 	
+	
+	
 	public int insert(BoardVo vo) {
+
+		int count = 0;
+
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+
+		try {
+			conn = getConnection();
+										
+			String sql = "insert \r\n" + 
+					" into board values(\r\n" + 
+					" null, \r\n" + 
+					" ?, \r\n" + 
+					" ?, \r\n" + 
+					" 0, \r\n" + 
+					" now(),\r\n" + 
+					" (select ifnull(max(b.g_no),0)+1 from board b),\r\n" + 
+					" 1,\r\n" + 
+					" 0,\r\n" + 
+					" ?)" ;
+			pstmt = conn.prepareStatement(sql);
+
+			pstmt.setString(1, vo.getTitle());
+			pstmt.setString(2, vo.getContents());
+			pstmt.setLong(3, vo.getUserNo());
+
+			count = pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+			System.out.println("error :" + e);
+		} finally {
+			// 자원 정리
+			try {
+				if (pstmt != null) {
+					pstmt.close();
+				}
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+
+		return count;
+	}
+	
+	public int AnswerInsert(BoardVo vo) {
 
 		int count = 0;
 
