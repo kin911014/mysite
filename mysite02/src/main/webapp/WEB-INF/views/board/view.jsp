@@ -36,6 +36,8 @@
 					</tr>
 				</table>
 				<div class="bottom">
+				<!--  완료 후 authUser아래로 넣기 중요중요!!!!!!!!!!!!!!!-->
+						<a href="${pageContext.request.contextPath}/board?a=answerform&no=${lists.no}">답글쓰기</a>
 				<c:choose>
 					<c:when test="${authUser.no == lists.userNo}">
 						<a href="${pageContext.request.contextPath}/board?a=listform">글목록</a>

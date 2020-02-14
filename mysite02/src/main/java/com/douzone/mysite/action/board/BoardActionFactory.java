@@ -14,6 +14,7 @@ public class BoardActionFactory extends ActionFactory {
 		case "viewform" : return new ViewFormAction();
 		case "modifyform" : return new ModifyFormAction();
 		case "modify" : return new ModifyAction();
+		case "answerform" : return new AnswerFormAction();
 		}
 		
 		return null; 
