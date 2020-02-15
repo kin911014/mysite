@@ -31,40 +31,28 @@
 					<c:forEach var="write" items="${write }" varStatus="status">
 					<c:choose>
 						<c:when test="${write.depth >= 1 }">
-						<td>${write.no }</td>
-						<td style="text-align:left; padding-reft:${0*0}px"><img src='/mysite02/assets/images/reply.png'><a href="${pageContext.request.contextPath}/board?a=viewform&no=${write.no}">${write.title }</a></td>
-						<td>${write.name }</td>
-						<td>${write.hit }</td>
-						<td>${write.regDate }</td>
-						<td><a href="" class="del">삭제</a></td>
+							<tr>
+								<td>${write.no }</td>
+								<td style="text-align:left; padding-reft:${0*0}px"><img src='/mysite02/assets/images/reply.png'><a href="${pageContext.request.contextPath}/board?a=viewform&no=${write.no}">${write.title }</a></td>
+								<td>${write.name }</td>
+								<td>${write.hit }</td>
+								<td>${write.regDate }</td>
+								<td><a href="" class="del">삭제</a></td>
+							</tr>
 						</c:when>
+						<c:otherwise>
+							<tr>
+								<td>${write.no }</td>
+								<td><a href="${pageContext.request.contextPath}/board?a=viewform&no=${write.no}">${write.title }</a></td>
+								<td>${write.name }</td>
+								<td>${write.hit }</td>
+								<td>${write.regDate }</td>
+								<td><a href="" class="del">삭제</a></td>
+							</tr>
+						
+						</c:otherwise>
 					</c:choose>
-					<tr>
-						<td>${write.no }</td>
-						<td><a href="${pageContext.request.contextPath}/board?a=viewform&no=${write.no}">${write.title }</a></td>
-						<td>${write.name }</td>
-						<td>${write.hit }</td>
-						<td>${write.regDate }</td>
-						<td><a href="" class="del">삭제</a></td>
-					</tr>
 					</c:forEach>
-					<tr>
-						<td>2</td>
-						<td style="text-align:left; padding-reft:${0*0}px"><img src='/mysite02/assets/images/reply.png'><a href="">두 번째 글입니다.</a></td>
-						<td>안대혁</td>
-						<td>3</td>
-						<td>2015-10-02 12:04:12</td>
-						<td><a href="" class="del">삭제</a></td>
-					</tr>
-					<tr>
-					
-						<td>1</td>
-						<td style="text-align:left; padding-reft:${20*1}px"><img src='/mysite02/assets/images/reply.png'><a href="">첫 번째 글입니다.</a></td>
-						<td>안대혁</td>
-						<td>3</td>
-						<td>2015-09-25 07:24:32</td>
-						<td><a href="" class="del">삭제</a></td>
-					</tr>
 				</table>
 				
 				<!-- pager 추가 -->
