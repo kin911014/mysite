@@ -17,6 +17,8 @@ public class AnswerAction implements Action {
 	@Override
 	public void excute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		
+		
+		
 		// title파라미터
 		String title = request.getParameter("title");
 		
@@ -36,8 +38,8 @@ public class AnswerAction implements Action {
 		int depth = Integer.parseInt(depthSt);
 		
 		// user_no파라미터
-		String userNoSt = request.getParameter("userNo");
-		Long userNo = Long.parseLong(userNoSt);
+		UserVo authUser = (UserVo) request.getSession().getAttribute("authUser");
+		Long userNo = authUser.getNo();
 		
 		
 		// 로그인을 해야 사용 가능!!!
