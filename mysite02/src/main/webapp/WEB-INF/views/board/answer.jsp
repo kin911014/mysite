@@ -19,10 +19,8 @@
 			<div id="board">
 				<form class="board-form" method="post" action="${pageContext.request.contextPath}/board?a=answer">
 					<input type = "hidden" name = "gNo" value="${answer.gNo }">
-					<input type = "hidden" name = "gNo" value="${answer.gNo }">
 					<input type = "hidden" name = "oNo" value="${answer.oNo }">
 					<input type = "hidden" name = "depth" value="${answer.depth }">
-					<input type = "hidden" name = "userNo" value="${answer.userNo }">
 					<table class="tbl-ex">
 					
 						<tr>

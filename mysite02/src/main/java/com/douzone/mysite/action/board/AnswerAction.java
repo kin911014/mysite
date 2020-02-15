@@ -6,6 +6,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.douzone.mysitetest.repository.BoardRepository;
 import com.douzone.mysitetest.vo.BoardVo;
 import com.douzone.mysitetest.vo.UserVo;
 import com.douzone.mysitetest.web.action.Action;
@@ -51,6 +52,8 @@ public class AnswerAction implements Action {
 		vo.setoNo(oNo);
 		vo.setDepth(depth);
 		vo.setUserNo(userNo);
+		
+		new BoardRepository().AnswerInsert(vo);
 		
 		WebUtil.redirect(request.getContextPath()+"/board?a=listform", request, response);
 	}

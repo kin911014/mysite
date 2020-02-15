@@ -15,8 +15,12 @@
 		<c:import url="/WEB-INF/views/includes/header.jsp"/>
 		<div id="content">
 			<div id="board">
-				<form id="search_form" action="" method="post">
+				<form id="search_form" action="${pageContext.request.contextPath}/board?a=listform" method="post">
 					<input type="text" id="kwd" name="kwd" value="">
+						<select name="option">
+						 	 <option value="title">제목으로 찾기</option>
+							 <option value="contents">내용으로 찾기</option>
+						</select>
 					<input type="submit" value="찾기">
 				</form>
 				<table class="tbl-ex">
@@ -27,7 +31,9 @@
 						<th>조회수</th>
 						<th>작성일</th>
 						<th>&nbsp;</th>
-					</tr>				
+					</tr>	
+					
+								
 					<c:forEach var="write" items="${write }" varStatus="status">
 					<c:choose>
 						<c:when test="${write.depth >= 1 }">
