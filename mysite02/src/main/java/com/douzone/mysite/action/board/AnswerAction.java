@@ -30,7 +30,7 @@ public class AnswerAction implements Action {
 		
 		new BoardRepository().AnswerInsert(vo);
 		WebUtil.redirect(request.getContextPath()+"/board?a=listform", request, response);
-		
+		//
 	}
 
 }
