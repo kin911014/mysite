@@ -29,6 +29,16 @@
 						<th>&nbsp;</th>
 					</tr>				
 					<c:forEach var="write" items="${write }" varStatus="status">
+					<c:choose>
+						<c:when test="${write.depth >= 1 }">
+						<td>${write.no }</td>
+						<td style="text-align:left; padding-reft:${0*0}px"><img src='/mysite02/assets/images/reply.png'><a href="${pageContext.request.contextPath}/board?a=viewform&no=${write.no}">${write.title }</a></td>
+						<td>${write.name }</td>
+						<td>${write.hit }</td>
+						<td>${write.regDate }</td>
+						<td><a href="" class="del">삭제</a></td>
+						</c:when>
+					</c:choose>
 					<tr>
 						<td>${write.no }</td>
 						<td><a href="${pageContext.request.contextPath}/board?a=viewform&no=${write.no}">${write.title }</a></td>
