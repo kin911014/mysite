@@ -156,20 +156,22 @@ public class BoardRepository {
 			String sql = "insert \r\n" + 
 					" into board values(\r\n" + 
 					" null, \r\n" + 
-					" ?, \r\n" +  // title
-					" ?, \r\n" +  // contents
+					" ?, \r\n" +  // 1. title
+					" ?, \r\n" +  // 2. contents
 					" 0, \r\n" +  // 조회수
 					" now(),\r\n" + 
-					" ?,\r\n" +  // g_no에서 가져옴
-					" 1,\r\n" +  // o_no+1로 가져옴
-					" 0,\r\n" +  
-					" ?)" ;      // userno
+					" ?,\r\n" +  // 3. g_no에서 가져옴
+					" ?,\r\n" +  // 4. o_no+1로 가져옴
+					" ?+1,\r\n" +// 5. depth
+					" ?)" ;      // 6. userno
 			pstmt = conn.prepareStatement(sql);
 
 			pstmt.setString(1, vo.getTitle());
 			pstmt.setString(2, vo.getContents());
 			pstmt.setInt(3, vo.getgNo()); 
-			pstmt.setLong(3, vo.getUserNo());
+			pstmt.setInt(4, vo.getoNo());
+			pstmt.setInt(5, vo.getDepth()); 
+			pstmt.setLong(6, vo.getUserNo());
 
 			count = pstmt.executeUpdate();
 
@@ -201,11 +203,10 @@ public class BoardRepository {
 
 		try {
 			conn = getConnection();
-
-			String sql = " select a.title, a.contents, a.no, a.user_no\r\n" + 
-					"from board a, user b\r\n" + 
-					"where a.no = ?\r\n" + 
-					"and a.user_no = b.no";
+			String sql = " select a.no, a.title, a.contents, a.hit, a.g_no, a.o_no, a.depth, a.user_no\r\n" + 
+					" from board a, user b\r\n" + 
+					" where a.no = ?\r\n" + 
+					" and a.user_no = b.no";
 			pstmt = conn.prepareStatement(sql);
 			
 			// BoardVo vo에서 no받은 뒤 그 넘버의 title과 contents를 보내기
@@ -214,15 +215,23 @@ public class BoardRepository {
 			rs = pstmt.executeQuery();
 
 			if (rs.next()) {
-				String title = rs.getString(1);
-				String contents = rs.getString(2);
-				Long no = rs.getLong(3);
-				Long userNo = rs.getLong(4);
+				Long no = rs.getLong(1);
+				String title = rs.getString(2);
+				String contents = rs.getString(3);
+				int hit = rs.getInt(4);
+				int gNo = rs.getInt(5);
+				int oNo = rs.getInt(6);
+				int depth = rs.getInt(7);
+				Long userNo = rs.getLong(8);
 
 				boardVo = new BoardVo();
+				boardVo.setNo(no);
 				boardVo.setTitle(title);
 				boardVo.setContents(contents);
-				boardVo.setNo(no);
+				boardVo.setHit(hit);
+				boardVo.setgNo(gNo);
+				boardVo.setoNo(oNo);
+				boardVo.setDepth(depth);
 				boardVo.setUserNo(userNo);
 				
 			}
