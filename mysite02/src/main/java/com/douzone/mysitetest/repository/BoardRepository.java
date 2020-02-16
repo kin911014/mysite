@@ -93,36 +93,52 @@ public class BoardRepository {
 	}	
 	
 	
-	public List<BoardVo> titleSearchFindAll(String search){
+	public List<BoardVo> titleSearchFindAll(String whereValue, String search){
 		List<BoardVo> result = new ArrayList<>();
 		
 		Connection conn = null;
 		PreparedStatement pstmt = null;	
 		ResultSet rs = null;
-		
+		String sql = null;
 		try {
 			conn = getConnection();
 			
-			String sql ="select a.no,\r\n" + 
-					" a.title,\r\n" + 
-					" a.contents,\r\n" + 
-					" a.hit,\r\n" + 
-					" a.reg_date,\r\n" + 
-					" a.g_no,\r\n" + 
-					" a.o_no,\r\n" + 
-					" a.depth,\r\n" + 
-					" a.user_no,\r\n" + 
-					" b.name\r\n" + 
-					"from board a, user b\r\n" + 
-					"where a.title like ?\r\n" + 
-					"order by a.g_no desc, a.o_no asc" ;
-			
+			if("title".equals(whereValue)) {
+				 sql ="select a.no,\r\n" + 
+						" a.title,\r\n" + 
+						" a.contents,\r\n" + 
+						" a.hit,\r\n" + 
+						" a.reg_date,\r\n" + 
+						" a.g_no,\r\n" + 
+						" a.o_no,\r\n" + 
+						" a.depth,\r\n" + 
+						" a.user_no,\r\n" + 
+						" b.name\r\n" + 
+						"from board a, user b\r\n" + 
+						"where title like ?\r\n" + 
+						"order by a.g_no desc, a.o_no asc" ;
 				
-		
+				
+			}else if("contents".equals(whereValue)) {
+				 sql ="select a.no,\r\n" + 
+						" a.title,\r\n" + 
+						" a.contents,\r\n" + 
+						" a.hit,\r\n" + 
+						" a.reg_date,\r\n" + 
+						" a.g_no,\r\n" + 
+						" a.o_no,\r\n" + 
+						" a.depth,\r\n" + 
+						" a.user_no,\r\n" + 
+						" b.name\r\n" + 
+						"from board a, user b\r\n" + 
+						"where contents like ?\r\n" + 
+						"order by a.g_no desc, a.o_no asc" ;
+			}
+	
 			pstmt = conn.prepareStatement(sql);
 			// 강사님께 질문하기 
-//			pstmt.setString(1, whereValue);
 			pstmt.setString(1, "%"+search+"%");
+			System.out.println(pstmt);
 			rs = pstmt.executeQuery();
 			System.out.println("1번오류");
 		
@@ -178,86 +194,87 @@ public class BoardRepository {
 		return result;
 	}	
 	
-	public List<BoardVo> contentsSearchFindAll(String search){
-		List<BoardVo> result = new ArrayList<>();
-		
-		Connection conn = null;
-		PreparedStatement pstmt = null;	
-		ResultSet rs = null;
-		
-		try {
-			conn = getConnection();
-			
-			String sql ="select a.no,\r\n" + 
-					" a.title,\r\n" + 
-					" a.contents,\r\n" + 
-					" a.hit,\r\n" + 
-					" a.reg_date,\r\n" + 
-					" a.g_no,\r\n" + 
-					" a.o_no,\r\n" + 
-					" a.depth,\r\n" + 
-					" a.user_no,\r\n" + 
-					" b.name\r\n" + 
-					"from board a, user b\r\n" + 
-					"where a.contents like ?\r\n" + 
-					"order by a.g_no desc, a.o_no asc" ;
-		
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, "%"+search+"%");
-			rs = pstmt.executeQuery();
-			System.out.println("1번오류");
-		
-		// 5. 결과 가져오기
-			while(rs.next()) {
-				// ()안은 인덱스를 가져오는게 좋다.
-				Long no = rs.getLong(1);
-				String title = rs.getString(2);
-				String contents = rs.getString(3);
-				int hit = rs.getInt(4);
-				String regDate = rs.getString(5);
-				int gNo = rs.getInt(6);
-				int oNo = rs.getInt(7);
-				int depth = rs.getInt(8);
-				Long userNo = rs.getLong(9);
-				String name = rs.getString(10);
-				
-				BoardVo vo = new BoardVo();
-				vo.setNo(no);
-				vo.setTitle(title);
-				vo.setContents(contents);
-				vo.setHit(hit);
-				vo.setRegDate(regDate);
-				
-				vo.setgNo(gNo);
-				vo.setoNo(oNo);
-				vo.setDepth(depth);
-				vo.setUserNo(userNo);
-				vo.setName(name);
-				
-				result.add(vo);
-				System.out.println("result.add 오류 ");
-			}
-		} catch (SQLException e) {
-			System.out.println("error : " + e);
-		}finally {
-			// 6. 자원정리
-			try {
-				if(rs != null) {
-					rs.close();
-				}
-				if(pstmt != null) {
-					pstmt.close();
-				}
-				if(conn != null) {
-					conn.close();
-				}
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
-		
-		return result;
-	}	
+//	public List<BoardVo> contentsSearchFindAll(String search){
+//		List<BoardVo> result = new ArrayList<>();
+//		
+//		Connection conn = null;
+//		PreparedStatement pstmt = null;	
+//		ResultSet rs = null;
+//		
+//		try {
+//			conn = getConnection();
+//			
+//			
+//			String sql ="select a.no,\r\n" + 
+//					" a.title,\r\n" + 
+//					" a.contents,\r\n" + 
+//					" a.hit,\r\n" + 
+//					" a.reg_date,\r\n" + 
+//					" a.g_no,\r\n" + 
+//					" a.o_no,\r\n" + 
+//					" a.depth,\r\n" + 
+//					" a.user_no,\r\n" + 
+//					" b.name\r\n" + 
+//					"from board a, user b\r\n" + 
+//					"where a.contents like ?\r\n" + 
+//					"order by a.g_no desc, a.o_no asc" ;
+//		
+//			pstmt = conn.prepareStatement(sql);
+//			pstmt.setString(1, "%"+search+"%");
+//			rs = pstmt.executeQuery();
+//			System.out.println("1번오류");
+//		
+//		// 5. 결과 가져오기
+//			while(rs.next()) {
+//				// ()안은 인덱스를 가져오는게 좋다.
+//				Long no = rs.getLong(1);
+//				String title = rs.getString(2);
+//				String contents = rs.getString(3);
+//				int hit = rs.getInt(4);
+//				String regDate = rs.getString(5);
+//				int gNo = rs.getInt(6);
+//				int oNo = rs.getInt(7);
+//				int depth = rs.getInt(8);
+//				Long userNo = rs.getLong(9);
+//				String name = rs.getString(10);
+//				
+//				BoardVo vo = new BoardVo();
+//				vo.setNo(no);
+//				vo.setTitle(title);
+//				vo.setContents(contents);
+//				vo.setHit(hit);
+//				vo.setRegDate(regDate);
+//				
+//				vo.setgNo(gNo);
+//				vo.setoNo(oNo);
+//				vo.setDepth(depth);
+//				vo.setUserNo(userNo);
+//				vo.setName(name);
+//				
+//				result.add(vo);
+//				System.out.println("result.add 오류 ");
+//			}
+//		} catch (SQLException e) {
+//			System.out.println("error : " + e);
+//		}finally {
+//			// 6. 자원정리
+//			try {
+//				if(rs != null) {
+//					rs.close();
+//				}
+//				if(pstmt != null) {
+//					pstmt.close();
+//				}
+//				if(conn != null) {
+//					conn.close();
+//				}
+//			} catch (SQLException e) {
+//				e.printStackTrace();
+//			}
+//		}
+//		
+//		return result;
+//	}	
 	
 	public int insert(BoardVo vo) {
 
