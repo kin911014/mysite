@@ -484,7 +484,7 @@ public class BoardRepository {
 		return count;
 	}
 	
-	public void hitUpdate(Long boardNo) {
+	public void hitUpdate(Long no) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 
@@ -494,7 +494,36 @@ public class BoardRepository {
 			String sql = "update board set hit = (hit+1) where no = ?";
 			pstmt = conn.prepareStatement(sql);
 
-			pstmt.setLong(1, boardNo);
+			pstmt.setLong(1, no);
+
+			pstmt.executeUpdate();
+			
+			
+		} catch (SQLException e) {
+			System.out.println("error : " + e);
+		} finally {
+			try {
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	public void deleteList(Long no) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+
+		try {
+			conn = getConnection();
+
+			String sql = "delete from board where no = ?";
+			pstmt = conn.prepareStatement(sql);
+
+			pstmt.setLong(1, no);
 
 			pstmt.executeUpdate();
 			

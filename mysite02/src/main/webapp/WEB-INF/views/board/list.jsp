@@ -64,7 +64,7 @@
 									<td>${write.hit }</td>
 									<td>${write.regDate }</td>
 									<td><c:if test="${authUser.name == write.name }">
-											<a href="" class="del">삭제</a>
+											<a href="${pageContext.request.contextPath}/board?a=listform&no=${write.no}" class="del">삭제</a>
 										</c:if></td>
 								</tr>
 

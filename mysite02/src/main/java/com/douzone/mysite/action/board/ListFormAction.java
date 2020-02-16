@@ -19,8 +19,10 @@ public class ListFormAction implements Action {
 
 	@Override
 	public void excute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+		String noSt = request.getParameter("no");
 		String search = request.getParameter("kwd");//사용자 입력값
 		String whereValue = request.getParameter("option"); //title or content?s
+		
 		
 		// serch에 값을 넣을 경우
 		if(search != null) {
