@@ -36,6 +36,8 @@
 						<th>&nbsp;</th>
 					</tr>
 					<c:forEach var="write" items="${writes }" varStatus="status">
+					${status.index }
+					${status.count }
 			
 					<c:choose>
 							<c:when test="${write.depth >= 1 }">
@@ -90,9 +92,6 @@
 							id="new-book">글쓰기</a>
 					</div>
 				</c:if>
-
-
-
 
 			</div>
 		</div>

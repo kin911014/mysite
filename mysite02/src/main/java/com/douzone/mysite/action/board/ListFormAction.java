@@ -21,8 +21,6 @@ public class ListFormAction implements Action {
 	public void excute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		String search = request.getParameter("kwd");//사용자 입력값
 		String whereValue = request.getParameter("option"); //title or content?s
-		System.out.println(search);
-		System.out.println(whereValue);
 		
 		// serch에 값을 넣을 경우
 		if(search != null) {
@@ -33,14 +31,13 @@ public class ListFormAction implements Action {
 						new BoardRepository().titleSearchFindAll(whereValue, search); //title
 				
 				request.setAttribute("writes", writes);
-				System.out.println("1-2번if의 write 실행");
 				WebUtil.forward("/WEB-INF/views/board/list.jsp", request, response);
+				
 			// title의 내용을 검색 
 			}else if("contents".equals(whereValue)){
 				List<BoardVo> writes = 
 						new BoardRepository().titleSearchFindAll(whereValue, search); //title
 				request.setAttribute("writes", writes);
-				System.out.println("1-2번if의 write 실행");
 				WebUtil.forward("/WEB-INF/views/board/list.jsp", request, response);
 			// 검색창에 아무것도 안넣을 경우
 			}
@@ -49,7 +46,6 @@ public class ListFormAction implements Action {
 		}else {
 			List<BoardVo> writes = new BoardRepository().findAll();
 			request.setAttribute("writes", writes);
-			System.out.println("2번if실행");
 			WebUtil.forward("/WEB-INF/views/board/list.jsp", request, response);
 			
 		}
