@@ -15,7 +15,7 @@
 		<c:import url="/WEB-INF/views/includes/header.jsp"/>
 		<div id="content">
 			<div id="board">
-				<form id="search_form" action="${pageContext.request.contextPath}/board?a=listform" method="post">
+				<form id="search_form" action="${pageContext.request.contextPath }/board?a=listform" method="post">
 					<input type="text" id="kwd" name="kwd" value="">
 						<select name="option">
 						 	 <option value="title">제목으로 찾기</option>
@@ -34,7 +34,7 @@
 					</tr>	
 					
 								
-					<c:forEach var="write" items="${write }" varStatus="status">
+					<c:forEach var="write" items="${writes }" varStatus="status">
 					<c:choose>
 						<c:when test="${write.depth >= 1 }">
 							<tr>

@@ -1,3 +1,4 @@
+
 package com.douzone.mysite.action.board;
 
 import com.douzone.mysitetest.web.action.Action;
