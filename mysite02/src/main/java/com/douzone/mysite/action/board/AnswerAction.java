@@ -41,7 +41,6 @@ public class AnswerAction implements Action {
 		UserVo authUser = (UserVo) request.getSession().getAttribute("authUser");
 		Long userNo = authUser.getNo();
 		
-		request.setAttribute("depth", depth);
 		
 		// 로그인을 해야 사용 가능!!!
 		

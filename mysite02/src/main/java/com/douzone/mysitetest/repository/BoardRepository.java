@@ -325,7 +325,7 @@ public class BoardRepository {
 					" 0, \r\n" +  // 조회수
 					" now(),\r\n" + 
 					" ?,\r\n" +  // 3. g_no에서 가져옴
-					" ?,\r\n" +  // 4. o_no+1로 가져옴
+					" ?+1,\r\n" +  // 4. o_no+1로 가져옴
 					" ?+1,\r\n" +// 5. depth
 					" ?)" ;      // 6. userno
 			pstmt = conn.prepareStatement(sql);

@@ -23,8 +23,11 @@ public class ListFormAction implements Action {
 		String whereValue = request.getParameter("option"); //title or contens
 		System.out.println(search);
 		System.out.println(whereValue);
+		
+		// serch에 값을 넣을 경우
 		if(search != null) {
 			
+			// title의 내용을 검색 
 			if("title".equals(whereValue)) {
 				List<BoardVo> writes = 
 						new BoardRepository().titleSearchFindAll(search); //title
@@ -32,20 +35,17 @@ public class ListFormAction implements Action {
 				request.setAttribute("writes", writes);
 				System.out.println("1-2번if의 write 실행");
 				WebUtil.forward("/WEB-INF/views/board/list.jsp", request, response);
+			// title의 내용을 검색 
 			}else if("contents".equals(whereValue)){
 				List<BoardVo> writes = 
 						new BoardRepository().contentsSearchFindAll(search); //title
 				request.setAttribute("writes", writes);
 				System.out.println("1-2번if의 write 실행");
 				WebUtil.forward("/WEB-INF/views/board/list.jsp", request, response);
-				
-			}else {
-				
-				List<BoardVo> writes = new BoardRepository().findAll();
-				request.setAttribute("writes", writes);
-				System.out.println("1-3번if실행");
-				WebUtil.forward("/WEB-INF/views/board/list.jsp", request, response);
+			// 검색창에 아무것도 안넣을 경우
 			}
+			
+		// 검색창이 null값이 들어간 경우
 		}else {
 			List<BoardVo> writes = new BoardRepository().findAll();
 			request.setAttribute("writes", writes);
