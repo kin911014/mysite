@@ -36,8 +36,7 @@
 						<th>&nbsp;</th>
 					</tr>
 					<c:forEach var="write" items="${writes }" varStatus="status">
-					${status.index }
-					${status.count }
+								
 			
 					<c:choose>
 							<c:when test="${write.depth >= 1 }">
@@ -50,9 +49,15 @@
 									<td>${write.name }</td>
 									<td>${write.hit }</td>
 									<td>${write.regDate }</td>
-									<td><c:if test="${authUser.name == write.name }">
-											<a href="" class="del">삭제</a>
-										</c:if></td>
+									<c:choose>
+										<c:when test="${authUser.no == write.userNo }">
+										
+										<td>
+											<a href="${pageContext.request.contextPath}/board?a=listform&no=${write.no}" class="del">삭제</a>
+										</td>
+										</c:when>
+									</c:choose> 
+										
 								</tr>
 							</c:when>
 							<c:otherwise>
@@ -63,11 +68,17 @@
 									<td>${write.name }</td>
 									<td>${write.hit }</td>
 									<td>${write.regDate }</td>
-									<td><c:if test="${authUser.name == write.name }">
+											
+ 									<c:choose>
+										<c:when test="${authUser.no == write.userNo }">
+										
+										<td>
 											<a href="${pageContext.request.contextPath}/board?a=listform&no=${write.no}" class="del">삭제</a>
-										</c:if></td>
+										</td>
+										</c:when>
+									</c:choose> 
 								</tr>
-
+									
 							</c:otherwise>
 						</c:choose>
 					</c:forEach>

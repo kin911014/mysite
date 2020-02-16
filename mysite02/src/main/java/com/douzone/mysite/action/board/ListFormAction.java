@@ -19,7 +19,18 @@ public class ListFormAction implements Action {
 
 	@Override
 	public void excute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-		String noSt = request.getParameter("no");
+		// deleteList
+		String deleteNoSt = request.getParameter("no");
+		if(deleteNoSt != null ) {
+		Long no = Long.parseLong(deleteNoSt);
+		new BoardRepository().deleteList(no);
+		List<BoardVo> writes = new BoardRepository().findAll();
+		request.setAttribute("writes", writes);
+		WebUtil.forward("/WEB-INF/views/board/list.jsp", request, response);
+		}
+			
+		
+		// 검색기능
 		String search = request.getParameter("kwd");//사용자 입력값
 		String whereValue = request.getParameter("option"); //title or content?s
 		
