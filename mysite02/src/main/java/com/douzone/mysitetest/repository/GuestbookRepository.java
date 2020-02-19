@@ -205,11 +205,10 @@ public Boolean delete(GuestbookVo vo) {
 	private Connection getConnection() throws SQLException {
 		Connection conn = null;
 		try {
-			// 1. JDBC Driver(MySQL)  로딩
-		Class.forName("com.mysql.jdbc.Driver");
-
+		// 1. 드라이버 로딩
+		Class.forName("org.mariadb.jdbc.Driver");
 		// 2. 연결하기
-		String url = "jdbc:mysql://127.0.0.1:3306/webdb";
+		String url = "192.168.1.105:3307/webdb";
 		conn = DriverManager.getConnection(url, "webdb", "webdb");
 		}catch (ClassNotFoundException e) {
 			System.out.println("드라이버 로딩 실패 : " + e);
