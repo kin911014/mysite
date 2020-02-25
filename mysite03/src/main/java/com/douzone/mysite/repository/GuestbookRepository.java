@@ -8,6 +8,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.douzone.mysite.exception.GuestbookRepositoryException;
+import com.douzone.mysite.exception.UserRepositoryException;
 import com.douzone.mysite.vo.GuestbookVo;
 
 
@@ -51,7 +53,8 @@ public class GuestbookRepository {
 		}
 		
 		} catch (SQLException e) {
-			System.out.println("error : " + e);
+//			System.out.println("error : " + e);
+			throw new GuestbookRepositoryException(e.getMessage());
 		}finally {
 			// 6. 자원정리
 			try {
@@ -95,7 +98,8 @@ public Boolean insert(GuestbookVo vo) {
 		result = count == 1;
 		
 		} catch (SQLException e) {
-			System.out.println("error : " + e);
+			throw new GuestbookRepositoryException(e.getMessage());
+//			System.out.println("error : " + e);
 		}finally {
 			// 6. 자원정리
 			try {
@@ -132,7 +136,7 @@ public Boolean delete(GuestbookVo vo) {
 	result = count == 1;
 	
 	} catch (SQLException e) {
-		System.out.println("error : " + e);
+		throw new GuestbookRepositoryException(e.getMessage());
 	}finally {
 		// 6. 자원정리
 		try {
@@ -181,7 +185,7 @@ public Boolean delete(GuestbookVo vo) {
 		result = count == 1;
 		
 		} catch (SQLException e) {
-			System.out.println("error : " + e);
+			throw new GuestbookRepositoryException(e.getMessage());
 		}finally {
 			// 6. 자원정리
 			try {
@@ -211,7 +215,8 @@ public Boolean delete(GuestbookVo vo) {
 		String url = "jdbc:mysql://192.168.1.105:3307/webdb";
 		conn = DriverManager.getConnection(url, "webdb", "webdb");
 		}catch (ClassNotFoundException e) {
-			System.out.println("드라이버 로딩 실패 : " + e);
+			throw new UserRepositoryException("드라이버 로딩 실패 : " + e);
+//			System.out.println("드라이버 로딩 실패 : " + e);
 		}
 		
 		return conn;
