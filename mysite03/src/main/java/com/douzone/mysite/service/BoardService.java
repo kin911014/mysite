@@ -23,4 +23,11 @@ public class BoardService {
 		boardRepository.insertContents(vo);
 		
 	}
+
+	public BoardVo getViewContents(BoardVo vo) {
+		
+		return boardRepository.findViewContentsByNo(vo);
+		
+		
+	}
 }

@@ -33,5 +33,13 @@
 				#{userNo})
 		]]>
 	</insert>
-
+	<select id="findViewContentsByNo" parameterType="boardvo" resultType="boardvo">
+		<![CDATA[
+			select a.no, a.title, a.contents, a.hit, a.g_no as gNo,
+			 a.o_no as oNo, a.depth, a.user_no as userNo 
+			from board a, user b 
+			where a.no = #{no } 
+			and a.user_no = b.no
+		]]>
+	</select>
 </mapper>

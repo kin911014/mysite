@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -42,17 +43,18 @@ public class BoardController {
 		Long userNo = authUser.getNo();
 		
 		vo.setUserNo(userNo);
-		System.out.println("전:"+vo);
 		boardService.insertContents(vo);
-		System.out.println("후:"+vo);
-		return "board/list";
+		return "redirect:/board";
 	}
 	
 	
 	////////////////////////////////////////////////////
 	
-	@RequestMapping(value="/view", method=RequestMethod.GET)
-	public String view() {
+	@RequestMapping(value="/view/{no}", method=RequestMethod.GET)
+	public String view(@PathVariable("no") Long no, Model model, BoardVo vo  ) {
+		vo.setNo(no);
+		BoardVo view = boardService.getViewContents(vo);
+		model.addAttribute("view", view);
 		return "board/view";
 	}
 	

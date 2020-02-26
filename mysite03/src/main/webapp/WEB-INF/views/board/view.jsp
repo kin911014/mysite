@@ -23,13 +23,13 @@
 					</tr>
 					<tr>
 						<td class="label">제목</td>
-						<td>${lists.title }</td>
+						<td>${view.title }</td>
 					</tr>
 					<tr>
 						<td class="label">내용</td>
 						<td>
 							<div class="view-content">
-								${lists.contents }
+								${view.contents }
 							</div>
 						</td>
 					</tr>
@@ -37,10 +37,10 @@
 				<div class="bottom">
 				<!--  완료 후 authUser아래로 넣기 중요중요!!!!!!!!!!!!!!!-->
 				<c:choose>
-					<c:when test="${authUser.no == lists.userNo}">
-						<a href="${pageContext.request.contextPath}/board?a=answerform&no=${lists.no}">답글쓰기</a>
+					<c:when test="${authUser.no == view.userNo}">
+						<a href="${pageContext.request.contextPath}/board?a=answerform&no=${view.no}">답글쓰기</a>
 						<a href="${pageContext.request.contextPath}/board?a=listform">글목록</a>
-						<a href="${pageContext.request.contextPath}/board?a=modifyform&no=${lists.no}">글수정</a>
+						<a href="${pageContext.request.contextPath}/board?a=modifyform&no=${view.no}">글수정</a>
 					</c:when>
 					<c:otherwise>
 						<a href="${pageContext.request.contextPath}/board?a=listform">글목록</a>
