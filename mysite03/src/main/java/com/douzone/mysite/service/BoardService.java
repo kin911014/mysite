@@ -21,13 +21,13 @@ public class BoardService {
 
 	public void insertContents(BoardVo vo) {
 		boardRepository.insertContents(vo);
-		
 	}
 
 	public BoardVo getViewContents(BoardVo vo) {
-		
-		return boardRepository.findViewContentsByNo(vo);
-		
-		
+		return boardRepository.findByNo(vo);
+	}
+
+	public BoardVo getModifyContents(BoardVo vo) {
+		return boardRepository.findByNo(vo);
 	}
 }

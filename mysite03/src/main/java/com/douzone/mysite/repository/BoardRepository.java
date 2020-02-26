@@ -31,8 +31,8 @@ public class BoardRepository {
 		
 	}
 	
-	public BoardVo findViewContentsByNo(BoardVo vo) {
-		return sqlSession.selectOne("board.findViewContentsByNo", vo);
+	public BoardVo findByNo(BoardVo vo) {
+		return sqlSession.selectOne("board.findByNo", vo);
 		
 	}
 	

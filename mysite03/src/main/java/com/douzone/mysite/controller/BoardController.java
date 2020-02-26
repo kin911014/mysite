@@ -51,7 +51,7 @@ public class BoardController {
 	////////////////////////////////////////////////////
 	
 	@RequestMapping(value="/view/{no}", method=RequestMethod.GET)
-	public String view(@PathVariable("no") Long no, Model model, BoardVo vo  ) {
+	public String view(HttpSession session, @PathVariable("no") Long no, Model model, BoardVo vo  ) {
 		vo.setNo(no);
 		BoardVo view = boardService.getViewContents(vo);
 		model.addAttribute("view", view);
@@ -65,8 +65,11 @@ public class BoardController {
 	
 	////////////////////////////////////////////////////////
 	
-	@RequestMapping(value="/modify", method=RequestMethod.GET)
-	public String modify() {
+	@RequestMapping(value="/modify/{no}", method=RequestMethod.GET)
+	public String modify(@PathVariable("no") Long no, BoardVo vo, Model model ) {
+		vo.setNo(no);
+		BoardVo modify = boardService.getModifyContents(vo);
+		model.addAttribute("modify", modify);
 		return "board/modify";
 	}
 	

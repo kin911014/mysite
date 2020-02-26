@@ -39,11 +39,11 @@
 				<c:choose>
 					<c:when test="${authUser.no == view.userNo}">
 						<a href="${pageContext.request.contextPath}/board?a=answerform&no=${view.no}">답글쓰기</a>
-						<a href="${pageContext.request.contextPath}/board?a=listform">글목록</a>
-						<a href="${pageContext.request.contextPath}/board?a=modifyform&no=${view.no}">글수정</a>
+						<a href="${pageContext.request.contextPath}/board">글목록</a>
+						<a href="${pageContext.request.contextPath}/board/modify/${view.no}">글수정</a>
 					</c:when>
 					<c:otherwise>
-						<a href="${pageContext.request.contextPath}/board?a=listform">글목록</a>
+						<a href="${pageContext.request.contextPath}/board">글목록</a>
 					</c:otherwise>
 				</c:choose>
 				</div>

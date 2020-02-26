@@ -33,7 +33,7 @@
 				#{userNo})
 		]]>
 	</insert>
-	<select id="findViewContentsByNo" parameterType="boardvo" resultType="boardvo">
+	<select id="findByNo" parameterType="boardvo" resultType="boardvo">
 		<![CDATA[
 			select a.no, a.title, a.contents, a.hit, a.g_no as gNo,
 			 a.o_no as oNo, a.depth, a.user_no as userNo 
