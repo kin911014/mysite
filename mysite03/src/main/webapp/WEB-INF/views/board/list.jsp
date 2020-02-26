@@ -28,6 +28,7 @@
 				</form>
 				<table class="tbl-ex">
 					<tr>
+					
 						<th>번호</th>
 						<th>제목</th>
 						<th>글쓴이</th>
@@ -35,25 +36,23 @@
 						<th>작성일</th>
 						<th>&nbsp;</th>
 					</tr>
-					<c:forEach var="write" items="${writes }" varStatus="status">
+					<c:forEach var="list" items="${lists }" varStatus="status">
 								
 			
 					<c:choose>
-							<c:when test="${write.depth >= 1 }">
+							<c:when test="${list.depth >= 1 }">
 								<tr>
-									<td>${write.no }</td>
-									<td style="text-align:left; padding-left:${20 * write.depth}px">
-										<img src='/mysite02/assets/images/reply.png'> <a
-										href="${pageContext.request.contextPath}/board?a=viewform&no=${write.no}">${write.title }</a>
+									<td>${list.no }</td>
+									<td style="text-align:left; padding-left:${20 * list.depth}px">
+										<img src='/mysite03/assets/images/reply.png'><a href="${pageContext.request.contextPath}/board/view/${list.no}">${list.title }</a>
 									</td>
-									<td>${write.name }</td>
-									<td>${write.hit }</td>
-									<td>${write.regDate }</td>
+									<td>${list.name }</td>
+									<td>${list.hit }</td>
+									<td>${list.regDate }</td>
 									<c:choose>
-										<c:when test="${authUser.no == write.userNo }">
-										
+										<c:when test="${authUser.no == list.userNo }">
 										<td>
-											<a href="${pageContext.request.contextPath}/board?a=listform&no=${write.no}" class="del">삭제</a>
+											<a href="${pageContext.request.contextPath}/board?a=listform&no=${list.no}" class="del">삭제</a>
 										</td>
 										</c:when>
 									</c:choose> 
@@ -62,18 +61,18 @@
 							</c:when>
 							<c:otherwise>
 								<tr>
-									<td>${write.no }</td>
-									<td style="text-align:left; padding-left:${20 * write.depth}px"><a
-										href="${pageContext.request.contextPath}/board?a=viewform&no=${write.no}">${write.title }</a></td>
-									<td>${write.name }</td>
-									<td>${write.hit }</td>
-									<td>${write.regDate }</td>
+									<td>${list.no }</td>
+									<td style="text-align:left; padding-left:${20 * list.depth}px"><a
+										href="${pageContext.request.contextPath}/board/view/${list.no}">${list.title }</a></td>
+									<td>${list.name }</td>
+									<td>${list.hit }</td>
+									<td>${list.regDate }</td>
 											
  									<c:choose>
-										<c:when test="${authUser.no == write.userNo }">
+										<c:when test="${authUser.no == list.userNo }">
 										
 										<td>
-											<a href="${pageContext.request.contextPath}/board?a=listform&no=${write.no}" class="del">삭제</a>
+											<a href="${pageContext.request.contextPath}/board?a=listform&no=${list.no}" class="del">삭제</a>
 										</td>
 										</c:when>
 									</c:choose> 
@@ -99,7 +98,7 @@
 				<!-- pager 추가 -->
 				<c:if test="${not empty authUser }">
 					<div class="bottom">
-						<a href="${pageContext.request.contextPath}/board?a=writeform"
+						<a href="${pageContext.request.contextPath}/board/write"
 							id="new-book">글쓰기</a>
 					</div>
 				</c:if>
