@@ -24,13 +24,13 @@ public class UserRepository {
 		return sqlSession.selectOne("user.findByEmailAndPassword", vo);
 	}
 	
-	public UserVo findByEmailAndPassword(String email, String password) {
-		Map<String, Object> map = new HashMap<>();
-		map.put("e", email);
-		map.put("p", password);
-		
-		return sqlSession.selectOne("user.findByEmailAndPassword2", map);
-	}
+//	public UserVo findByEmailAndPassword(String email, String password) {
+//		Map<String, Object> map = new HashMap<>();
+//		map.put("e", email);
+//		map.put("p", password);
+//		
+//		return sqlSession.selectOne("user.findByEmailAndPassword2", map);
+//	}
 	
 	public UserVo find(Long no) {
 		return sqlSession.selectOne("user.find", no);

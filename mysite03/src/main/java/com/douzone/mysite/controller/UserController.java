@@ -25,6 +25,7 @@ public class UserController {
 	}
 	
 	@RequestMapping(value="/join", method=RequestMethod.POST)
+	// jps에서 post로 값을 보내면 vo에 담긴다.
 	public String join(UserVo vo) {
 		System.out.println(vo);
 		userService.join(vo);
@@ -57,7 +58,7 @@ public class UserController {
 	public String logout(HttpSession session) {
 		//////////////////////접근제어////////////////////////////////
 		UserVo authUser = (UserVo)session.getAttribute("authUser");
-		if(authUser != null) {
+		if(authUser == null) {
 			return "redirect:/";
 		}
 		////////////////////////////////////////////////////
@@ -77,6 +78,7 @@ public class UserController {
 		////////////////////////////////////////////////////
 		
 		Long no = authUser.getNo();
+		
 		UserVo vo = userService.getUser(no);
 		
 		model.addAttribute("userVo", vo);
@@ -85,6 +87,7 @@ public class UserController {
 	
 	@RequestMapping(value="/update", method=RequestMethod.POST)
 	public String update(HttpSession session, UserVo userVo) {
+		
 		////////////////////////접근제어///////////////////////////////
 		UserVo authUser = (UserVo)session.getAttribute("authUser");	
 		if(authUser == null) {

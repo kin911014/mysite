@@ -13,13 +13,17 @@
 		select last_insert_id()
 	</selectKey>
 	</insert>
+	
+	
 	<select id="findByEmailAndPassword" parameterType="uservo" resultType="uservo">
-	<![CDATA[
-		select no, name 
-		from user where email = #{email} 
-		and password = #{password}
-	]]>				
+		<![CDATA[
+		select no, name
+		  from user 
+		 where email = #{email }
+		   and password = #{password }
+		]]>
 	</select>
+	
 	<select id="findByEmailAndPassword2" parameterType="map" resultType="uservo">
 	<![CDATA[
 		select no, name 
@@ -31,7 +35,7 @@
 	<![CDATA[
 		select no, name, email, gender
 		from user
-		where no = ${no}
+		where no = #{no}
 	]]>				
 	</select>
 </mapper>
