@@ -16,7 +16,7 @@
 		<c:import url="/WEB-INF/views/includes/header.jsp" />
 		<div id="content">
 			<div id="board">
-				<form class="board-form" method="post" action="${pageContext.request.contextPath}/board?a=answer">
+				<form class="board-form" method="post" action="${pageContext.request.contextPath}/board/reply/${no}">
 					<input type = "hidden" name = "gNo" value="${answer.gNo }">
 					<input type = "hidden" name = "oNo" value="${answer.oNo }">
 					<input type = "hidden" name = "depth" value="${answer.depth }">
@@ -24,7 +24,7 @@
 					
 						<tr>
 						
-							<th colspan="2">글쓰기</th>
+							<th colspan="2">답글쓰기</th>
 						</tr>
 						<tr>
 							<td class="label">제목</td>
@@ -33,7 +33,7 @@
 						<tr>
 							<td class="label">내용</td>
 							<td>
-								<textarea id="content" name="content"></textarea>
+								<textarea id="content" name="contents"></textarea>
 							</td>
 						</tr>
 					</table>

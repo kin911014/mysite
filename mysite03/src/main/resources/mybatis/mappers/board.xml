@@ -50,4 +50,19 @@
 			 where no = #{no}
 		]]>
 	</update>
+	<insert id="ReplyInsert" parameterType="boardvo">
+		<![CDATA[
+			insert
+				into board values( 
+				null, 
+				?, 
+				?, 
+				0, 
+				now(), 
+				?, 
+				?+1,
+				?+1,
+				?)
+		]]>
+	</insert>
 </mapper>

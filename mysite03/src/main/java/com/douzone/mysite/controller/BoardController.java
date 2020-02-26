@@ -58,11 +58,6 @@ public class BoardController {
 		return "board/view";
 	}
 	
-	@RequestMapping(value="/view", method=RequestMethod.POST)
-	public String view(BoardVo boardVo) {
-		return "board/view";
-	}
-	
 	////////////////////////////////////////////////////////
 	
 	@RequestMapping(value="/modify/{no}", method=RequestMethod.GET)
@@ -85,13 +80,22 @@ public class BoardController {
 	
 	////////////////////////////////////////////////////////
 	
-	@RequestMapping(value="/answer", method=RequestMethod.GET)
-	public String answer() {
-		return "board/answer";
+	@RequestMapping(value="/reply/{no}", method=RequestMethod.GET)
+	public String answer(@PathVariable("no") Long no, Model model) {
+		model.addAttribute("no", no);
+		return "board/reply";
 	}
 	
-	@RequestMapping(value="/answer", method=RequestMethod.POST)
-	public String answer(BoardVo boardVo) {
+	@RequestMapping(value="/reply/{no}", method=RequestMethod.POST)
+	public String answer(HttpSession session, @PathVariable("no") Long no, BoardVo vo) {
+		UserVo authUser = (UserVo) session.getAttribute("authUser");    
+		Long userNo = authUser.getNo();
+		System.out.println(userNo);
+		
+		vo.setUserNo(userNo);
+		System.out.println(vo);
+		boardService.reply(vo);
+		System.out.println(vo);
 		return "board/answer";
 	}
 }

@@ -32,8 +32,13 @@ public class BoardService {
 	}
 
 	public void modifyUpdate(BoardVo vo) {
-		System.out.println("service :"+vo);
 		boardRepository.update(vo);
+		
+	}
+
+	public void reply(BoardVo vo) {
+		System.out.println("service :"+vo);
+		boardRepository.ReplyInsert(vo);
 		
 	}
 }

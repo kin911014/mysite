@@ -36,6 +36,16 @@ public class BoardRepository {
 		
 	}
 	
+	public void update(BoardVo vo) {
+		sqlSession.update("board.update", vo);
+	}
+	
+	public void ReplyInsert(BoardVo vo) {
+		System.out.println("ctr1 :"+vo);
+		sqlSession.selectOne("board.ReplyInsert", vo);
+		
+	}
+	
 	public List<BoardVo> titleSearchFindAll(String whereValue, String search){
 		List<BoardVo> result = new ArrayList<>();
 		
@@ -220,62 +230,7 @@ public class BoardRepository {
 //	}	
 	
 	
-	public int AnswerInsert(BoardVo vo) {
-
-		int count = 0;
-
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-
-		try {
-			conn = getConnection();
-										
-			String sql = "insert \r\n" + 
-					" into board values(\r\n" + 
-					" null, \r\n" + 
-					" ?, \r\n" +  // 1. title
-					" ?, \r\n" +  // 2. contents
-					" 0, \r\n" +  // 조회수
-					" now(),\r\n" + 
-					" ?,\r\n" +  // 3. g_no에서 가져옴
-					" ?+1,\r\n" +  // 4. o_no+1로 가져옴
-					" ?+1,\r\n" +// 5. depth
-					" ?)" ;      // 6. userno
-			pstmt = conn.prepareStatement(sql);
-
-			pstmt.setString(1, vo.getTitle());
-			pstmt.setString(2, vo.getContents());
-			pstmt.setInt(3, vo.getgNo()); 
-			pstmt.setInt(4, vo.getoNo());
-			pstmt.setInt(5, vo.getDepth()); 
-			pstmt.setLong(6, vo.getUserNo());
-
-			count = pstmt.executeUpdate();
-
-		} catch (SQLException e) {
-			System.out.println("error :" + e);
-		} finally {
-			// 자원 정리
-			try {
-				if (pstmt != null) {
-					pstmt.close();
-				}
-				if (conn != null) {
-					conn.close();
-				}
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
-
-		return count;
-	}
 	
-	
-	public void update(BoardVo vo) {
-		System.out.println("ctr1 :"+vo);
-		sqlSession.update("board.update", vo);
-	}
 	
 	public void deleteList(Long no) {
 		Connection conn = null;
