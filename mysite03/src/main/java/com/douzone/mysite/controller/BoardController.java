@@ -73,9 +73,14 @@ public class BoardController {
 		return "board/modify";
 	}
 	
-	@RequestMapping(value="/modify", method=RequestMethod.POST)
-	public String modify(BoardVo boardVo) {
-		return "board/modify";
+	@RequestMapping(value="/modify/{no}", method=RequestMethod.POST)
+	public String modify(@PathVariable("no") Long no, BoardVo vo) {
+		System.out.println(no);
+		vo.setNo(no);
+		System.out.println("ctr1 :"+vo);
+		boardService.modifyUpdate(vo);
+		System.out.println("ctr last :"+vo);
+		return "redirect:/board";
 	}
 	
 	////////////////////////////////////////////////////////

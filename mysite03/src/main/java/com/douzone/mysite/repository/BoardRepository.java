@@ -272,79 +272,9 @@ public class BoardRepository {
 	}
 	
 	
-	public int update(BoardVo vo) {
-		int count = 0;
-
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-
-		try {
-			conn = getConnection();
-
-			String sql = "update board\r\n" + 
-					" set title = ?,\r\n" + 
-					" contents = ?\r\n" + 
-					" where no = ?";
-			pstmt = conn.prepareStatement(sql);
-			
-			// BoardVo vo에서 no받은 뒤 그 넘버의 title과 contents를 보내기
-			// 아래 1이 ?에 들어가면 해당 title과 contents를 받을 수 있다.
-			pstmt.setString(1, vo.getTitle());
-			pstmt.setString(2, vo.getContents());
-			pstmt.setLong(3, vo.getNo());
-			count = pstmt.executeUpdate();
-
-			
-		} catch (SQLException e) {
-			System.out.println("error :" + e);
-		} finally {
-			// 자원 정리
-			try {
-				if (rs != null) {
-					rs.close();
-				}
-				if (pstmt != null) {
-					pstmt.close();
-				}
-				if (conn != null) {
-					conn.close();
-				}
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
-
-		return count;
-	}
-	
-	public void hitUpdate(Long no) {
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-
-		try {
-			conn = getConnection();
-
-			String sql = "update board set hit = (hit+1) where no = ?";
-			pstmt = conn.prepareStatement(sql);
-
-			pstmt.setLong(1, no);
-
-			pstmt.executeUpdate();
-			
-			
-		} catch (SQLException e) {
-			System.out.println("error : " + e);
-		} finally {
-			try {
-				if (pstmt != null)
-					pstmt.close();
-				if (conn != null)
-					conn.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
+	public void update(BoardVo vo) {
+		System.out.println("ctr1 :"+vo);
+		sqlSession.update("board.update", vo);
 	}
 	
 	public void deleteList(Long no) {

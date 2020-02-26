@@ -30,4 +30,10 @@ public class BoardService {
 	public BoardVo getModifyContents(BoardVo vo) {
 		return boardRepository.findByNo(vo);
 	}
+
+	public void modifyUpdate(BoardVo vo) {
+		System.out.println("service :"+vo);
+		boardRepository.update(vo);
+		
+	}
 }

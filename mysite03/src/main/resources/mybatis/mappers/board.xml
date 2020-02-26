@@ -42,4 +42,12 @@
 			and a.user_no = b.no
 		]]>
 	</select>
+	<update id="update" parameterType="boardvo">
+		<![CDATA[
+			update board
+			 set title = #{title}, 
+			 contents = #{contents}
+			 where no = #{no}
+		]]>
+	</update>
 </mapper>
