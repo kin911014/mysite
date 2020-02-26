@@ -27,9 +27,7 @@ public class UserController {
 	@RequestMapping(value="/join", method=RequestMethod.POST)
 	// jps에서 post로 값을 보내면 vo에 담긴다.
 	public String join(UserVo vo) {
-		System.out.println(vo);
 		userService.join(vo);
-		System.out.println(vo);
 		return "redirect:/user/joinsuccess";
 	}
 	
@@ -94,6 +92,8 @@ public class UserController {
 			return "redirect:/";
 		}
 		/////////////////////////////////////////////////////////////
+		userVo.setNo(authUser.getNo());
+		userService.updateUser(userVo);
 		
 		return "redirect:/user/update";
 	}

@@ -35,4 +35,9 @@ public class UserRepository {
 	public UserVo find(Long no) {
 		return sqlSession.selectOne("user.find", no);
 	}
+
+	public int update(UserVo vo) {
+		return sqlSession.update("user.update", vo);
+		
+	}
 }
