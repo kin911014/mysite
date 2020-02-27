@@ -29,7 +29,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 		//
 		if(authUser == null) {
 			request.setAttribute("userVo", vo);
-			request.getRequestDispatcher("WEB-INF/views/user/login.jsp")
+			request.getRequestDispatcher("/WEB-INF/views/user/login.jsp")
 			.forward(request, response);
 			return false;
 		}
