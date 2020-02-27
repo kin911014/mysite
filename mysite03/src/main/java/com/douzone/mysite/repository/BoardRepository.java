@@ -27,6 +27,7 @@ public class BoardRepository {
 	
 	
 	public void insertContents(BoardVo vo) {
+		System.out.println(vo);
 		sqlSession.insert("board.insertContents", vo);
 		
 	}

@@ -41,6 +41,7 @@ public class BoardController {
 	@Auth
 	@RequestMapping(value="/write", method=RequestMethod.POST)
 	public String write(HttpSession session, BoardVo vo) {
+		System.out.println("ctr vo" + vo);
 		UserVo authUser = (UserVo) session.getAttribute("authUser");    
 		Long userNo = authUser.getNo();
 		
@@ -94,20 +95,20 @@ public class BoardController {
 		return "board/reply";
 	}
 	
-	@RequestMapping(value="/reply/{no}", method=RequestMethod.POST)
-	public String answer(HttpSession session, @PathVariable("no") Long no, BoardVo vo) {
-		vo.setNo(no);
-		BoardVo reply = boardService.replyFindByNo(vo);
-		
-		
-		UserVo authUser = (UserVo) session.getAttribute("authUser");    
-		Long userNo = authUser.getNo();
-		System.out.println(userNo);
-		
-		vo.setUserNo(userNo);
-		System.out.println(vo);
-		boardService.reply(vo);
-		System.out.println(vo);
-		return "board/answer";
-	}
+//	@RequestMapping(value="/reply", method=RequestMethod.POST)
+//	public String answer(HttpSession session, @PathVariable("no") Long no, BoardVo vo) {
+//		vo.setNo(no);
+//		BoardVo reply = boardService.replyFindByNo(vo);
+//		
+//		
+//		UserVo authUser = (UserVo) session.getAttribute("authUser");    
+//		Long userNo = authUser.getNo();
+//		System.out.println(userNo);
+//		
+//		vo.setUserNo(userNo);
+//		System.out.println(vo);
+//		boardService.reply(vo);
+//		System.out.println(vo);
+//		return "board/answer";
+//	}
 }
