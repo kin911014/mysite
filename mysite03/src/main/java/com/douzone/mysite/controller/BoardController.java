@@ -88,6 +88,10 @@ public class BoardController {
 	
 	@RequestMapping(value="/reply/{no}", method=RequestMethod.POST)
 	public String answer(HttpSession session, @PathVariable("no") Long no, BoardVo vo) {
+		vo.setNo(no);
+		BoardVo reply = boardService.replyFindByNo(vo);
+		
+		
 		UserVo authUser = (UserVo) session.getAttribute("authUser");    
 		Long userNo = authUser.getNo();
 		System.out.println(userNo);

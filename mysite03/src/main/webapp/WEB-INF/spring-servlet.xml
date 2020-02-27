@@ -21,7 +21,22 @@
 	<!-- 서블릿 컨테이너의 디폴트 서블릿 위임 핸들러 -->
 	<mvc:default-servlet-handler/>
 	
-
+	<!-- Interceptors -->
+	<mvc:interceptors>
+		<!-- <mvc:interceptor>
+			<mvc:mapping path="/board/**" />
+			<bean class="com.douzone.mysite.interceptor.MyInterceptor02"/>
+		</mvc:interceptor> -->
+		<mvc:interceptor>
+			<mvc:mapping path="/user/auth"/>
+			<bean class="com.douzone.security.LoginInterceptor"></bean>
+		</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/user/logout"/>
+			<bean class="com.douzone.security.LogoutInterceptor"></bean>
+		</mvc:interceptor>
+	</mvc:interceptors>
+	
 	<!-- ViewResolver --> <!-- return에서 주소에 /WEB-INF/views/와 .jsp를 붙일 필요가 없다. -->
 	<bean id="viewResolver"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">

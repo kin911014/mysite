@@ -21,7 +21,6 @@ public class UserService {
 
 	public UserVo getUser(UserVo vo) {
 		return userRepository.findByEmailAndPassword(vo);
-		 
 		
 		
 	}

@@ -41,4 +41,9 @@ public class BoardService {
 		boardRepository.ReplyInsert(vo);
 		
 	}
+
+	public BoardVo replyFindByNo(BoardVo vo) {
+		return boardRepository.findByNo(vo);
+		
+	}
 }

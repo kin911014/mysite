@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.douzone.mysite.service.UserService;
 import com.douzone.mysite.vo.UserVo;
-
+import com.douzone.security.Auth;
 @Controller
 @RequestMapping("/user")
 public class UserController {
@@ -41,31 +41,31 @@ public class UserController {
 		return "user/login";
 	}
 	
-	@RequestMapping(value="/login", method=RequestMethod.POST)
-	//@ModelAttribute UserVo vo에서 UserVo를 어트리뷰트해서 jsp에 넘어간다. 그리고 앞글자는 userVo로 쓸 수 있다.
-	public String login(HttpSession session,@ModelAttribute UserVo vo) {
-		UserVo authUser = userService.getUser(vo);
-		if(authUser == null) {
-			return "user/login";
-		}
-		session.setAttribute("authUser", authUser);
-		return "redirect:/";
-	}
+//	@RequestMapping(value="/login", method=RequestMethod.POST)
+//	//@ModelAttribute UserVo vo에서 UserVo를 어트리뷰트해서 jsp에 넘어간다. 그리고 앞글자는 userVo로 쓸 수 있다.
+//	public String login(HttpSession session,@ModelAttribute UserVo vo) {
+//		UserVo authUser = userService.getUser(vo);
+//		if(authUser == null) {
+//			return "user/login";
+//		}
+//		session.setAttribute("authUser", authUser);
+//		return "redirect:/";
+//	}
 	
-	@RequestMapping(value="/logout")
-	public String logout(HttpSession session) {
-		//////////////////////접근제어////////////////////////////////
-		UserVo authUser = (UserVo)session.getAttribute("authUser");
-		if(authUser == null) {
-			return "redirect:/";
-		}
-		////////////////////////////////////////////////////
-		
-		session.removeAttribute("authUser");
-		session.invalidate();
-		return "redirect:/";
-	}
-	
+//	@RequestMapping(value="/logout")
+//	public String logout(HttpSession session) {
+//		//////////////////////접근제어////////////////////////////////
+//		UserVo authUser = (UserVo)session.getAttribute("authUser");
+//		if(authUser == null) {
+//			return "redirect:/";
+//		}
+//		////////////////////////////////////////////////////
+//		
+//		session.removeAttribute("authUser");
+//		session.invalidate();
+//		return "redirect:/";
+//	}
+	@Auth("user")
 	@RequestMapping(value="/update", method=RequestMethod.GET)
 	public String update(HttpSession session, Model model) {
 		////////////////////////접근제어///////////////////////////////
