@@ -9,6 +9,10 @@ import java.lang.annotation.Target;
 //retention은 기간에 관한것
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Auth {
-	String value() default "user";
+	public enum Role {USER, ADMIN}
+	
+	String value() default "USER";
+	
+	public Role role() default Role.USER;
 	boolean test() default false;
 }

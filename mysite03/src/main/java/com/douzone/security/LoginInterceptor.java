@@ -34,6 +34,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 			return false;
 		}
 		
+		System.out.println("-------->authUser:" + authUser);
 		
 		// session 처리 (비밀번호가 맞은 경우)
 		HttpSession session = request.getSession(true);

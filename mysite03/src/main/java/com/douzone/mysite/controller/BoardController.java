@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.douzone.mysite.service.BoardService;
 import com.douzone.mysite.vo.BoardVo;
 import com.douzone.mysite.vo.UserVo;
+import com.douzone.security.Auth;
 
 @Controller
 @RequestMapping("/board")
@@ -31,12 +32,13 @@ public class BoardController {
 	
 	//////////////////////////////////////////////////////
 	
-	
+	@Auth
 	@RequestMapping(value="/write", method=RequestMethod.GET)
 	public String write() {
 		return "board/write";
 	}
 	
+	@Auth
 	@RequestMapping(value="/write", method=RequestMethod.POST)
 	public String write(HttpSession session, BoardVo vo) {
 		UserVo authUser = (UserVo) session.getAttribute("authUser");    
@@ -46,7 +48,8 @@ public class BoardController {
 		boardService.insertContents(vo);
 		return "redirect:/board";
 	}
-	
+	////////////////////////////////////////////////////////
+	// delete는 접근제어해야한다.
 	
 	////////////////////////////////////////////////////
 	
@@ -60,6 +63,8 @@ public class BoardController {
 	
 	////////////////////////////////////////////////////////
 	
+	// 접근제어 붙이기
+	@Auth
 	@RequestMapping(value="/modify/{no}", method=RequestMethod.GET)
 	public String modify(@PathVariable("no") Long no, BoardVo vo, Model model ) {
 		vo.setNo(no);
@@ -68,6 +73,8 @@ public class BoardController {
 		return "board/modify";
 	}
 	
+	// 접근제어 붙이기	
+	@Auth
 	@RequestMapping(value="/modify/{no}", method=RequestMethod.POST)
 	public String modify(@PathVariable("no") Long no, BoardVo vo) {
 		System.out.println(no);
@@ -80,6 +87,7 @@ public class BoardController {
 	
 	////////////////////////////////////////////////////////
 	
+	@Auth
 	@RequestMapping(value="/reply/{no}", method=RequestMethod.GET)
 	public String answer(@PathVariable("no") Long no, Model model) {
 		model.addAttribute("no", no);
