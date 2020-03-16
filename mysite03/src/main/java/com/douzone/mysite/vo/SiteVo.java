@@ -1,9 +1,9 @@
 package com.douzone.mysite.vo;
 
-public class AdminVo {
+public class SiteVo {
 	private Long no;
 	private String title;
-	private String message;
+	private String welcomeMessage;
 	private String profile;
 	private String description;
 	
@@ -19,11 +19,11 @@ public class AdminVo {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	public String getMessage() {
-		return message;
+	public String getWelcomeMessage() {
+		return welcomeMessage;
 	}
-	public void setMessage(String message) {
-		this.message = message;
+	public void setWelcomeMessage(String welcomeMessage) {
+		this.welcomeMessage = welcomeMessage;
 	}
 	public String getProfile() {
 		return profile;
@@ -37,9 +37,10 @@ public class AdminVo {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+	
 	@Override
 	public String toString() {
-		return "AdminVo [no=" + no + ", title=" + title + ", message=" + message + ", profile=" + profile
+		return "SiteVo [no=" + no + ", title=" + title + ", welcomeMessage=" + welcomeMessage + ", profile=" + profile
 				+ ", description=" + description + "]";
 	}
 	
