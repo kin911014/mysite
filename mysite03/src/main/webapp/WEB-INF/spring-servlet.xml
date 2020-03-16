@@ -59,4 +59,7 @@
 		<property name="order" value="1" />
 	</bean>
 
+	<!-- mvc resource -->
+	<mvc:resources location="file:/mysite-uploads/" mapping="/images/**"></mvc:resources>
+	
 </beans>
