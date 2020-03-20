@@ -41,7 +41,6 @@ public class BoardController {
 	@Auth
 	@RequestMapping(value="/write", method=RequestMethod.POST)
 	public String write(HttpSession session, BoardVo vo) {
-		System.out.println("ctr vo" + vo);
 		UserVo authUser = (UserVo) session.getAttribute("authUser");    
 		Long userNo = authUser.getNo();
 		
