@@ -18,18 +18,6 @@
 		base-package="com.douzone.mysite.controller,com.douzone.mysite.exception" />
 
 
-	<!-- validator, conversionService, messageConverter를 자동으로 등록 드라이버를 먼저 설치해야 
-		아래 default-setvlet-handler 사용 가능 -->
-	<mvc:annotation-driven>
-		<mvc:argument-resolvers>
-			<bean
-				class="com.douzone.security.AuthUserHandlerMethodArgumentResolver"></bean>
-
-		</mvc:argument-resolvers>
-	</mvc:annotation-driven>
-
-	<!-- 서블릿 컨테이너의 디폴트 서블릿 위임 핸들러 -->
-	<mvc:default-servlet-handler />
 
 	<!-- Interceptors -->
 	<mvc:interceptors>
