@@ -29,12 +29,5 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
 		configurer.enable();
 	}
  
-	// MVC Resource(URL Magic Mapping)
-	@Override
-	public void addResourceHandlers(ResourceHandlerRegistry registry) {
-		registry.addResourceHandler("/images/**").addResourceLocations("file:/mysite-uploads/");
-	}
-	
 
-	
 }

@@ -1,4 +1,4 @@
-package com.douzone.security;
+package com.douzone.mysite.config.web;
 
 import java.util.List;
 
@@ -8,6 +8,11 @@ import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+
+import com.douzone.security.AuthInterceptor;
+import com.douzone.security.AuthUserHandlerMethodArgumentResolver;
+import com.douzone.security.LoginInterceptor;
+import com.douzone.security.LogoutInterceptor;
 
 @Configuration
 public class SecurityConfig extends WebMvcConfigurerAdapter {
