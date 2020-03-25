@@ -15,3 +15,4 @@ import com.douzone.mysite.config.app.MyBatisConfig;
 public class AppConfig {
 
 }
+
