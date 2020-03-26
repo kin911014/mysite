@@ -15,4 +15,8 @@ public class SiteService {
 		SiteVo serviceList = siteRepository.findAll();
 		return serviceList;
 	}
+	public void upload(SiteVo siteVo) {
+		siteRepository.upload(siteVo);
+	}
+	
 }

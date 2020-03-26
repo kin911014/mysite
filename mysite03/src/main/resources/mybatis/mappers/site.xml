@@ -12,6 +12,11 @@
 			    where no =1
 		]]>
 	</select>
+	<select id="upload" parameterType="sitevo" >
+		<![CDATA[
+		update blog set title=#{title}, logo=#{logo} where id = #{id}
+		]]>
+	</select>
 	<!-- <insert id="insertContents" parameterType="uservo">
 		<if test="depth == 0">
 			<![CDATA[

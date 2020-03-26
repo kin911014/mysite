@@ -17,5 +17,9 @@ public class SiteRepository {
 		SiteVo result = sqlSession.selectOne("site.findAll");
 		return result;
 	}
-			
+
+
+	public void upload(SiteVo siteVo) {
+		sqlSession.insert("site.upload", siteVo);
+	}		
 }
