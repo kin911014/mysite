@@ -1,4 +1,4 @@
-package com.douzone.mysite.config;
+package com.douzone.mysite;
 
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
