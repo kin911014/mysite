@@ -21,10 +21,30 @@
 	<!-- validator, conversionService, messageConverter를 자동으로 등록 드라이버를 먼저 설치해야 
 		아래 default-setvlet-handler 사용 가능 -->
 	<mvc:annotation-driven>
+		<mvc:message-converters>
+			<!-- string을 컨버터해준다 -->
+			<bean
+				class="org.springframework.http.converter.StringHttpMessageConverter">
+				<property name="supportedMediaTypes">
+					<list>
+						<value>text/html; charset=UTF-8</value>
+					</list>
+				</property>
+			</bean>
+			<!-- object를 컨버터해준다 -->
+			<bean
+				class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+				<property name="supportedMediaTypes">
+					<list>
+						<value>application/json; charset=UTF-8</value>
+					</list>
+				</property>
+			</bean>
+		</mvc:message-converters>
+
 		<mvc:argument-resolvers>
 			<bean
 				class="com.douzone.security.AuthUserHandlerMethodArgumentResolver"></bean>
-
 		</mvc:argument-resolvers>
 	</mvc:annotation-driven>
 

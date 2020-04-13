@@ -38,4 +38,8 @@ public class UserRepository {
 		return sqlSession.update("user.update", vo);
 		
 	}
+
+	public UserVo find(String email) {
+		return sqlSession.selectOne("user.findByEmail", email);
+	}
 }
