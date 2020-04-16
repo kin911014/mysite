@@ -17,18 +17,31 @@ var startNo = 0;
 
 $(function(){
 	$('#btn-fetch').click(function(){
-		console.log('delete');
+		// console.log('delete');
 		
 		$.ajax({
-			url: '${pageContext.request.contextPath }/api/guestbook/list' + startNo,
+			url: '${pageContext.request.contextPath }/api/guestbook/list/' + startNo,
 			async: true,
 			type: 'get',
 			dataType: 'json',
 			data: '',
 			success: function(response){
 				console.log(response);
-				
-				// startNo = ...
+				if(response.result != "success")	{
+					console.error(response.message);
+					return;
+				}
+				// rendering
+				$.each(response.data, function(index, vo){
+					var html = 
+						"<li data-no='" + vo.no + "'>" + 
+						 "<strong>"+ vo.name +"</strong>" +
+						 "<p>" + vo.contents.replace("/\n/gi", "<br>") + "</p>" +
+						 "<strong></strong>" +
+						 "<a href='' data-no='" + vo.no + "'>삭제</a>" +
+						 "</li>";
+					$("#list-guestbook").append(html);
+				})
 			},
 			error: function(xhr, status, e){
 				console.error(status + ":" + e);
@@ -56,37 +69,6 @@ $(function(){
 				</div>
 				
 				<ul id="list-guestbook">
-
-					<li data-no=''>
-						<strong>지나가다가</strong>
-						<p>
-							별루입니다.<br>
-							비번:1234 -,.-
-						</p>
-						<strong></strong>
-						<a href='' data-no=''>삭제</a> 
-					</li>
-					
-					<li data-no=''>
-						<strong>둘리</strong>
-						<p>
-							안녕하세요<br>
-							홈페이지가 개 굿 입니다.
-						</p>
-						<strong></strong>
-						<a href='' data-no=''>삭제</a> 
-					</li>
-
-					<li data-no=''>
-						<strong>주인</strong>
-						<p>
-							아작스 방명록 입니다.<br>
-							테스트~
-						</p>
-						<strong></strong>
-						<a href='' data-no=''>삭제</a> 
-					</li>
-					
 									
 				</ul>
 			</div>
