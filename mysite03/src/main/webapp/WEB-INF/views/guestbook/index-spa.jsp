@@ -11,6 +11,32 @@
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script type="text/javascript" src="${pageContext.request.contextPath }/assets/js/jquery/jquery-3.4.1.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script type="text/javascript">
+
+var startNo = 0;
+
+$(function(){
+	$('#btn-fetch').click(function(){
+		console.log('delete');
+		
+		$.ajax({
+			url: '${pageContext.request.contextPath }/api/guestbook/list' + startNo,
+			async: true,
+			type: 'get',
+			dataType: 'json',
+			data: '',
+			success: function(response){
+				console.log(response);
+				
+				// startNo = ...
+			},
+			error: function(xhr, status, e){
+				console.error(status + ":" + e);
+			}
+		})
+	});
+});
+</script>
 </head>
 <body>
 	<div id="container">
@@ -24,6 +50,11 @@
 					<textarea id="tx-content" placeholder="내용을 입력해 주세요."></textarea>
 					<input type="submit" value="보내기" />
 				</form>
+				
+				<div style='margin:20px 0 0 0'>
+					<button id='btn-fetch'>fetch</button>
+				</div>
+				
 				<ul id="list-guestbook">
 
 					<li data-no=''>
