@@ -32,6 +32,11 @@ public class GuestbookController {
 		return "guestbook/delete";
 	}
 	
+	@RequestMapping( "/spa" )
+	public String indexSpa( Model model ){
+		return "guestbook/index-spa";
+	}
+	
 //	@RequestMapping( value="/delete", method=RequestMethod.POST )
 //	public String delete( @ModelAttribute GuestbookVo vo ){
 //		System.out.println( vo );
