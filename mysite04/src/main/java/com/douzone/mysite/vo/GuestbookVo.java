@@ -7,6 +7,13 @@ public class GuestbookVo {
 	private String password;
 	private String reg;
 	
+	public GuestbookVo() {
+		
+	}
+	public GuestbookVo(Long no, String password) {
+		this.no = no;
+		this.password = password;
+	}
 	public Long getNo() {
 		return no;
 	}

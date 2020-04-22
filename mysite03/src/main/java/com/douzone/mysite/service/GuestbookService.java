@@ -22,6 +22,10 @@ public class GuestbookService {
 		return 1 == guestbookRepository.delete( vo );
 	}
 	
+	public boolean deleteMessage(Long no, String password) {
+		return 1 == guestbookRepository.delete(new GuestbookVo(no, password));
+	}
+	
 	public boolean writeMessage( GuestbookVo vo ) {
 		int count = guestbookRepository.insert(vo);
 		return count == 1;
@@ -30,5 +34,6 @@ public class GuestbookService {
 	public List<GuestbookVo> getMessageList(Long startNo) {
 		return guestbookRepository.findAll(startNo);
 	}
+
 
 }
